@@ -19,11 +19,11 @@ members = ["demo"]
 
 [dependencies]
 egui = "0.33.3"
-glam = { version = "0.25.0", features = ["mint"] }
-mint = "0.5"
+glam = { version = "0.31.0", features = ["mint"] }
+mint = "0.5.9"
 
 [dev-dependencies]
-eframe = { version = "0.24", default-features = false, features = ["default_fonts"] }
+eframe = { version = "0.33.3", default-features = false, features = ["default_fonts"] }
 
 [profile.release]
 opt-level = "s"

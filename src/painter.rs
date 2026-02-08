@@ -61,9 +61,9 @@ impl Painter3d {
 
         if closed {
             points.pop();
-            self.painter.add(Shape::closed_line(points, stroke))
+            self.painter.add(Shape::closed_line(points, stroke.into()))
         } else {
-            self.painter.add(Shape::line(points, stroke))
+            self.painter.add(Shape::line(points, stroke.into()))
         }
     }
 
@@ -117,7 +117,7 @@ impl Painter3d {
 
         if points.len() > 2 {
             self.painter
-                .add(Shape::convex_polygon(points, fill, stroke));
+                .add(Shape::convex_polygon(points, fill, stroke.into()));
         }
     }
 
@@ -128,7 +128,7 @@ impl Painter3d {
             .collect::<Vec<_>>();
 
         if points.len() > 1 {
-            self.painter.add(Shape::line(points, stroke));
+            self.painter.add(Shape::line(points, stroke.into()));
         }
     }
 
