@@ -14,8 +14,6 @@ categories = ["gui", "game-development", "game-engines"]
 keywords = ["egui", "gizmo"]
 exclude = ["/docs"]
 
-[workspace]
-members = ["demo"]
 
 [dependencies]
 egui = "0.33.3"

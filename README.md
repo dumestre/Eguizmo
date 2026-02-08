@@ -26,7 +26,7 @@ if let Some(response) = gizmo.interact(ui) {
 }
 ```
 
-For a more complete example, see the [demo source code](demo/src/main.rs).
+For examples, see the [examples directory](examples/).
 
 The gizmo exposes matrices and vectors as [mint](https://github.com/kvark/mint) types, which means it is easy to use with matrix types from various crates
 such as [nalgebra](https://github.com/dimforge/nalgebra), [glam](https://github.com/bitshifter/glam-rs)
