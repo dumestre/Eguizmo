@@ -8,10 +8,10 @@ Para usar o `Eguizmo` no seu projeto, adicione a seguinte linha ao seu arquivo `
 
 ```toml
 [dependencies]
-egui = "0.26.2"
+egui = "0.33.3"
 egui-gizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
-glam = { version = "0.25.0", features = ["mint"] }
-mint = "0.5"
+glam = { version = "0.31.0", features = ["mint"] }
+mint = "0.5.9"
 ```
 
 ## 2. Configuração Básica

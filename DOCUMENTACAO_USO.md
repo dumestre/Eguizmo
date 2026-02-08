@@ -9,19 +9,19 @@ O `Eguizmo` é uma biblioteca que fornece gizmos 3D para manipulação de transf
 ## Requisitos
 
 - Rust 1.76 ou superior
-- Biblioteca `egui` (versão 0.26.2 ou compatível)
+- Biblioteca `egui` (versão 0.33.3 recomendada)
 - Matrizes 4x4 para representação de transformações (usando `mint` para interoperabilidade)
 
 ## Instalação
 
-Para adicionar o `Eguizmoo` ao seu projeto, adicione a seguinte dependência ao seu `Cargo.toml`:
+Para adicionar o `egui-gizmo` ao seu projeto, adicione a seguinte dependência ao seu `Cargo.toml`:
 
 ```toml
 [dependencies]
-egui = "0.26.2"
-Eguizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
-glam = { version = "0.25.0", features = ["mint"] }
-mint = "0.5"
+egui = "0.33.3"
+egui-gizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
+glam = { version = "0.31.0", features = ["mint"] }
+mint = "0.5.9"
 ```
 
 ## Integração Básica
