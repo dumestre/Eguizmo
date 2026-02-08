@@ -1,10 +1,10 @@
 # Instruções para Usar egui-gizmo no Seu Projeto
 
-Este documento fornece instruções específicas para integrar o `egui-gizmo` no seu projeto Rust, especialmente se você estiver desenvolvendo uma engine de jogos.
+Este documento fornece instruções específicas para integrar o `Eguizmo` no seu projeto Rust, especialmente se você estiver desenvolvendo uma engine de jogos.
 
 ## 1. Adicionando a Dependência
 
-Para usar o `egui-gizmo` no seu projeto, adicione a seguinte linha ao seu arquivo `Cargo.toml`:
+Para usar o `Eguizmo` no seu projeto, adicione a seguinte linha ao seu arquivo `Cargo.toml`:
 
 ```toml
 [dependencies]
@@ -19,7 +19,7 @@ mint = "0.5"
 Aqui está um exemplo mínimo de como configurar o gizmo no seu código:
 
 ```rust
-use egui_gizmo::*;
+use Eguizmo::*;
 
 // Em algum lugar do seu código onde você gerencia objetos editáveis
 struct EditableObject {

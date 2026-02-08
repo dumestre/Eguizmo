@@ -1,10 +1,10 @@
-# Documentação de Uso - egui-gizmo
+# Documentação de Uso - Eguizmo
 
-Esta documentação explica como integrar e utilizar a biblioteca `egui-gizmo` no seu projeto Rust, especialmente em uma engine de jogos.
+Esta documentação explica como integrar e utilizar a biblioteca `Eguizmo` no seu projeto Rust, especialmente em uma engine de jogos.
 
 ## Visão Geral
 
-O `egui-gizmo` é uma biblioteca que fornece gizmos 3D para manipulação de transformações (rotação, translação e escala) em aplicações que utilizam a biblioteca `egui`. Ele é particularmente útil para editores de cena, ferramentas de desenvolvimento de jogos e aplicações de modelagem 3D.
+O `Eguizmo` é uma biblioteca que fornece gizmos 3D para manipulação de transformações (rotação, translação e escala) em aplicações que utilizam a biblioteca `egui`. Ele é particularmente útil para editores de cena, ferramentas de desenvolvimento de jogos e aplicações de modelagem 3D.
 
 ## Requisitos
 
@@ -14,12 +14,12 @@ O `egui-gizmo` é uma biblioteca que fornece gizmos 3D para manipulação de tra
 
 ## Instalação
 
-Para adicionar o `egui-gizmo` ao seu projeto, adicione a seguinte dependência ao seu `Cargo.toml`:
+Para adicionar o `Eguizmoo` ao seu projeto, adicione a seguinte dependência ao seu `Cargo.toml`:
 
 ```toml
 [dependencies]
 egui = "0.26.2"
-egui-gizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
+Eguizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
 glam = { version = "0.25.0", features = ["mint"] }
 mint = "0.5"
 ```
@@ -31,7 +31,7 @@ mint = "0.5"
 Aqui está um exemplo básico de como integrar o gizmo em sua aplicação egui:
 
 ```rust
-use egui_gizmo::*;
+use Eguizmo::*;
 
 // Em sua estrutura de estado do jogo
 struct GameState {
