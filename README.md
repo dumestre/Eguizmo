@@ -1,4 +1,4 @@
-# egui-gizmo
+# Egizmo
 
 [![Latest version](https://img.shields.io/crates/v/egui-gizmo.svg)](https://crates.io/crates/egui-gizmo)
 [![Documentation](https://docs.rs/egui-gizmo/badge.svg)](https://docs.rs/egui-gizmo)
