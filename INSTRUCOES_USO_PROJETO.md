@@ -12,6 +12,7 @@ egui = "0.33.3"
 egui-gizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
 glam = { version = "0.31.0", features = ["mint"] }
 mint = "0.5.9"
+serde = { version = "1.0", features = ["derive"] }
 ```
 
 ## 2. Configuração Básica

@@ -431,7 +431,7 @@ impl GizmoResult {
     }
 }
 
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, serde::Serialize, serde::Deserialize)]
 pub enum GizmoMode {
     /// Only rotation
     Rotate,
@@ -441,7 +441,7 @@ pub enum GizmoMode {
     Scale,
 }
 
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, serde::Serialize, serde::Deserialize)]
 pub enum GizmoOrientation {
     /// Transformation axes are aligned to world space. Rotation of the
     /// gizmo does not change.
