@@ -1,14 +1,15 @@
 [package]
 name = "egui-gizmo"
 version = "0.16.2"
-authors = ["Urho Laukkarinen <urho.laukkarinen@gmail.com>"]
+authors = ["Urho Laukkarinen <urho.laukkarinen@gmail.com>", "Maintained by dumestre <https://github.com/dumestre/Eguizmo>"]
 edition = "2021"
 
 license-file = "LICENSE"
 readme = "README.md"
 description = "3d transform gizmo for the egui library"
-homepage = "https://github.com/urholaukkarinen/egui-gizmo"
-repository = "https://github.com/urholaukkarinen/egui-gizmo"
+homepage = "https://github.com/dumestre/Eguizmo"
+repository = "https://github.com/dumestre/Eguizmo"
+documentation = "https://docs.rs/egui-gizmo"
 categories = ["gui", "game-development", "game-engines"]
 keywords = ["egui", "gizmo"]
 exclude = ["/docs"]
