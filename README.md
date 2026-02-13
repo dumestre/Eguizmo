@@ -1,45 +1,127 @@
-# Egizmo
+# Eguizmo (Fork) - Guia Atualizado de Integracao
 
-[![Latest version](https://img.shields.io/crates/v/egui-gizmo.svg)](https://crates.io/crates/egui-gizmo)
-[![Documentation](https://docs.rs/egui-gizmo/badge.svg)](https://docs.rs/egui-gizmo)
-![MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+Este guia documenta como usar o `Eguizmo` (fork do `egui-gizmo`) no seu projeto, com foco no fluxo que voce ja usa no `Dengine`.
 
-3d transformation gizmo built on top of the [egui](https://github.com/emilk/egui) library.
+## O que e
 
-[Try it out in a web demo](https://urholaukkarinen.github.io/egui-gizmo/)
+`Eguizmo` fornece um gizmo 3D para manipulacao de transform (mover, rotacionar, escalar) dentro de UI `egui`.
 
-![Rotation](media/rotation.png)
-![Translation](media/translation.png)
-![Scale](media/scale.png)
+## Instalacao
 
-## Usage
+### Opcao 1: usar seu fork (recomendado)
+
+No `Cargo.toml`:
+
+```toml
+[dependencies]
+egui-gizmo = { git = "https://github.com/SEU_USUARIO/Eguizmo", branch = "main" }
+glam = { version = "0.31.0", features = ["mint"] }
+```
+
+### Opcao 2: usar o repo original (referencia)
+
+```toml
+[dependencies]
+egui-gizmo = { git = "https://github.com/dumestre/Eguizmo", branch = "main" }
+glam = { version = "0.31.0", features = ["mint"] }
+```
+
+## Integracao basica
+
+Imports:
 
 ```rust
-let gizmo = Gizmo::new("My gizmo")
-    .view_matrix(view_matrix)
-    .projection_matrix(projection_matrix)
-    .model_matrix(model_matrix)
-    .mode(GizmoMode::Rotate);
+use egui_gizmo::{Gizmo, GizmoMode, GizmoOrientation};
+use glam::Mat4;
+```
 
-if let Some(response) = gizmo.interact(ui) {
-    model_matrix = response.transform();
+Exemplo minimo:
+
+```rust
+let gizmo = Gizmo::new("scene_transform_gizmo")
+    .view_matrix(view.to_cols_array_2d().into())
+    .projection_matrix(proj.to_cols_array_2d().into())
+    .model_matrix(model_matrix.to_cols_array_2d().into())
+    .mode(GizmoMode::Translate)
+    .orientation(GizmoOrientation::Global)
+    .viewport(viewport_rect);
+
+if let Some(result) = gizmo.interact(ui) {
+    model_matrix = Mat4::from(result.transform());
 }
 ```
 
-For examples, see the [examples directory](examples/).
+## Integracao no Dengine (estado atual)
 
-The gizmo exposes matrices and vectors as [mint](https://github.com/kvark/mint) types, which means it is easy to use with matrix types from various crates
-such as [nalgebra](https://github.com/dimforge/nalgebra), [glam](https://github.com/bitshifter/glam-rs)
-and [cgmath](https://github.com/rustgd/cgmath). You may need to enable a `mint` feature, depending on the math library.
+No projeto atual:
 
-## Integration Guide
+- A viewport foi separada em `src/viewport.rs`.
+- O gizmo e desenhado dentro de `ViewportPanel::show(...)`.
+- O `main.rs` so instancia e chama a viewport.
+- A area da viewport respeita:
+  - largura dockada do `Inspector`
+  - largura dockada do `Hierarchy`
+  - altura reservada do `Project` no rodape
 
-For detailed instructions on how to integrate and use this library in your own Rust project, especially in a game engine, please refer to the [integration documentation](DOCUMENTACAO_USO.md).
+Arquivos relevantes:
 
-## Project Status
+- `src/viewport.rs`
+- `src/main.rs`
+- `src/hierarchy.rs` (getters de largura dockada)
 
-This project has been updated and improved to work with modern Rust toolchains and dependencies. The main library is stable and functional, with examples demonstrating its usage.
+## Controles de uso sugeridos
 
-## Contributing
+No editor, mantenha estados para:
 
-Feel free to contribute to this project by submitting issues or pull requests. Check the repository at [https://github.com/dumestre/Eguizmo](https://github.com/dumestre/Eguizmo) for the latest version and contribution guidelines.
+- `GizmoMode`: `Translate`, `Rotate`, `Scale`
+- `GizmoOrientation`: `Global`, `Local`
+- Camera/projecao: perspectiva/ortografica
+
+Exemplo de estado:
+
+```rust
+struct ViewportState {
+    gizmo_mode: GizmoMode,
+    gizmo_orientation: GizmoOrientation,
+    model_matrix: Mat4,
+}
+```
+
+## Conversao de matrizes
+
+`Eguizmo` usa `mint` nos metodos publicos.
+Com `glam` + feature `mint`, a conversao fica direta:
+
+```rust
+let mint_mat = mat4.to_cols_array_2d().into();
+let mat4_back = Mat4::from(mint_mat);
+```
+
+## Erros comuns
+
+1. Gizmo nao aparece:
+- confirme que `viewport_rect` e valido (nao zero)
+- confirme que view/projection estao corretas
+- confirme que o gizmo esta sendo chamado dentro de uma area visivel do `egui`
+
+2. Interacao do mouse nao funciona:
+- evite sobrepor widgets clicaveis em cima do viewport
+- confira se o `ui` usado no `gizmo.interact(ui)` e o da area correta
+
+3. Transform "estranha":
+- confira handness/sistema de coordenadas da camera
+- teste primeiro com `Mat4::IDENTITY`
+
+## Fluxo de update recomendado
+
+1. calcular `viewport_rect`
+2. montar `view` e `projection`
+3. criar `Gizmo` com modo/orientacao atuais
+4. aplicar `result.transform()` no objeto selecionado
+5. renderizar cena usando a nova transform
+
+## Versao documentada
+
+- `egui`/`eframe`: `0.33.3`
+- `egui-gizmo` (fork `Eguizmo`): branch `main`
+- `glam`: `0.31` com feature `mint`
